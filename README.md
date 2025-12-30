@@ -105,6 +105,83 @@ project
 +-- README.md
 ```
 
+#### Example Output
+```
+# Generated Structure
+# Files: 57 | Dirs: 11
+
+numbers/
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── Dockerfile
+├── LICENSE.md
+├── README.md
+├── app/
+│   ├── __init__.py
+│   ├── api/
+│   │   ├── __init__.py
+│   │   ├── models/
+│   │   │   ├── __init__.py
+│   │   │   ├── requests.py
+│   │   │   └── responses.py
+│   │   ├── routers/
+│   │   │   ├── admin.py
+│   │   │   ├── catalan.py
+│   │   │   ├── e.py
+│   │   │   ├── eulers.py
+│   │   │   ├── general.py
+│   │   │   ├── legacy.py
+│   │   │   ├── lemniscate.py
+│   │   │   ├── log10.py
+│   │   │   ├── log2.py
+│   │   │   ├── log3.py
+│   │   │   ├── phi.py
+│   │   │   ├── pi.py
+│   │   │   ├── sqrt2.py
+│   │   │   ├── sqrt3.py
+│   │   │   ├── websocket.py
+│   │   │   └── zeta3.py
+│   │   └── websocket_manager.py
+│   ├── core/
+│   │   ├── __init_.py
+│   │   ├── config.py
+│   │   ├── constants.py
+│   │   ├── exceptions.py
+│   │   └── redis_client.py
+│   ├── main.py
+│   ├── storage/
+│   │   ├── __init__.py
+│   │   ├── base_storage.py
+│   │   ├── binary_source.py
+│   │   ├── exceptions.py
+│   │   ├── file_source.py
+│   │   ├── manager.py
+│   │   ├── multi_manager.py
+│   │   └── sqlite_source.py
+│   └── utils/
+│       └── __init__.py
+├── compose.yml
+├── data/
+├── docs/
+│   ├── REDIS_WEBSOCKET_QUICK_REF.md
+│   └── REDIS_WEBSOCKET_USER_GUIDE.md
+├── frontend/
+│   ├── index.html
+│   └── websocket_test.html
+├── nginx.conf
+├── project.toml
+├── rebuild.sh
+├── requirements-dev.txt
+├── requirements.txt
+├── setup_project.sh
+├── start.sh
+├── stop.sh
+├── tests/
+│   └── __init__.py
+└── update_to_redis_websocket.sh
+
+```
+
 ---
 
 ## ⚙️ How it Works (The Logic)
