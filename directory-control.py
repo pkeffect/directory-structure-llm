@@ -370,7 +370,7 @@ def generate_structure_file():
 # ==============================================================================
 
 def main():
-    print_header("Directory Controller v0.0.7")
+    print_header("Directory Controller v0.0.8")
     print(f"{Style.DIM}Manage your project structure with LLM outputs.{Style.RESET}")
     print("\n1. SCAN & GENERATE 'directory-structure.txt'")
     print("2. READ & BUILD structure from file")
@@ -397,8 +397,9 @@ def main():
             print_step(f"Preview: {target_file}")
             print(f" Working Root: {Style.YELLOW}{os.getcwd()}{Style.RESET}")
             print(f" Parsed Items: {Style.BOLD}{len(nodes)}{Style.RESET}")
+            print(f" {Style.RED}Warning:{Style.RESET} This will create folders and move existing files to match the structure.")
             
-            confirm = input(f"\nProceed with changes? ({Style.BOLD}y/n{Style.RESET}): ").lower()
+            confirm = input(f"\nAre you sure you want to proceed? ({Style.BOLD}y/n{Style.RESET}): ").lower()
             if confirm == 'y':
                 build_tree_from_nodes(nodes)
                 print(f"\n {Style.GREEN}✓ Operation Complete{Style.RESET}")

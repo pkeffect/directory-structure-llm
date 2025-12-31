@@ -1,6 +1,6 @@
 # Directory Controller
 
-![Version](https://img.shields.io/badge/version-v0.0.7-blue.svg?style=flat-square)
+![Version](https://img.shields.io/badge/version-v0.0.8-blue.svg?style=flat-square)
 ![Python](https://img.shields.io/badge/python-3.6+-green.svg?style=flat-square)
 ![Platform](https://img.shields.io/badge/platform-win%20%7C%20mac%20%7C%20linux-lightgrey.svg?style=flat-square)
 ![License](https://img.shields.io/badge/license-MIT-orange.svg?style=flat-square)
@@ -21,8 +21,10 @@ It solves two specific problems:
 *   **Smart Detection:** Automatically finds structure files (e.g., `structure.txt`, `tree.md`) without needing specific filenames.
 *   **Auto-Scaffolding:** Creates directories and empty placeholder files based on the input map.
 *   **Context-Aware:** Uses heuristics (file extensions, trailing slashes, indentation lookahead) to distinguish files from folders even if the LLM output is messy.
+*   **Native Windows Support:** Now includes a fix to force ANSI color codes to render correctly in the Windows Command Prompt (cmd.exe) and PowerShell.
 
-### New in v0.0.7 (Enterprise-Grade Safety)
+### New in v0.0.8 (Enterprise-Grade Safety)
+*   **Interactive Confirmation:** Before modifying your filesystem (Option 2), the script provides a summary of detected nodes and explicitly asks for user confirmation (`y/n`). This prevents accidental execution on the wrong file.
 *   **Gitignore Integration:** Respects your project's `.gitignore` file during scanning, automatically excluding build artifacts, logs, secrets, and temp files. Checks both **filenames** and **relative paths**.
 *   **Infinite Loop Protection (Symlinks):** The scanner now detects Symbolic Links. It identifies them in the output (e.g., `link -> target`) but **stops recursion** immediately. This prevents the script from freezing on circular file paths or duplicating massive libraries.
 *   **Smart Collision Resolution:** If you try to move a file to a folder where it already exists, the script **will not overwrite it**. Instead, it automatically renames the incoming file (e.g., `script.py` → `script_1.py`) to ensure zero data loss.
@@ -67,7 +69,9 @@ This looks for a structure file (e.g., `structure.txt`, `tree.md`) and builds th
 1.  Ask an LLM to generate a project structure.
 2.  Save the LLM's output into a text file (e.g., `structure.txt`) in your project root.
 3.  Run the script and select **Option 2**.
-4.  The script will:
+4.  **Verification:** The script will parse the file and display a summary (Working Root, Number of Parsed Items) and a warning.
+5.  **Confirmation:** You must type `y` to proceed.
+6.  The script will:
     *   **Analyze:** Parse the text file and identify nodes.
     *   **Sanitize:** Clean up invalid characters and resolve root-wrapping issues.
     *   **Execute:** Create missing directories, create empty placeholder files, and move existing files to their new locations (with collision protection).
@@ -194,7 +198,7 @@ When parsing a text file, the script must decide if a line represents a **File**
 3.  **Indentation Lookahead:** If line `A` is followed by line `B`, and line `B` is indented *deeper* than line `A`, then line `A` is treated as a **Directory** (files cannot contain children).
 4.  **Common Naming Conventions:** If ambiguous, names like `src`, `dist`, `bin`, `assets`, `config`, `tests` are treated as **Directories**.
 
-### 2. The "Smart" Security Layers (v0.0.7)
+### 2. The "Smart" Security Layers (v0.0.8)
 *   **Non-Destructive Operations:**
     *   This script **NEVER deletes files**.
     *   This script **NEVER overwrites files**. If a move operation conflicts, it renames the file to `filename_1.ext`.
